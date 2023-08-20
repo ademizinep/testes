@@ -1,0 +1,9 @@
+ENV=${1-development}
+
+DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+
+RAILS_ENV=$ENV rails db:drop
+
+RAILS_ENV=$ENV rails db:create
+
+RAILS_ENV=$ENV rails db:migrate
