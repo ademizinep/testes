@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_16_141950) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_19_230440) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_16_141950) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["form_id"], name: "index_form_fields_on_form_id"
+  end
+
+  create_table "form_people", force: :cascade do |t|
+    t.bigint "form_id", null: false
+    t.bigint "person_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["form_id", "person_id"], name: "index_form_people_on_form_id_and_person_id", unique: true
+    t.index ["form_id"], name: "index_form_people_on_form_id"
+    t.index ["person_id"], name: "index_form_people_on_person_id"
   end
 
   create_table "forms", force: :cascade do |t|
@@ -43,6 +53,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_16_141950) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["form_field_id"], name: "index_number_choice_forms_on_form_field_id"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "phone_number"
+    t.string "address"
+    t.string "picture_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "text_form_fields", force: :cascade do |t|
@@ -78,6 +99,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_16_141950) do
   end
 
   add_foreign_key "form_fields", "forms"
+  add_foreign_key "form_people", "forms"
+  add_foreign_key "form_people", "people"
   add_foreign_key "number_choice_fields", "number_choice_forms"
   add_foreign_key "number_choice_forms", "form_fields"
   add_foreign_key "text_form_fields", "text_forms"
