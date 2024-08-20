@@ -12,17 +12,23 @@ end
 
 text_forms = []
 10.times do |i|
-  text_forms << create(:text_form, form_field: form_fields[i])
+  3.times do
+    text_forms << create(:text_form, form_field: form_fields[i])
+  end
 end
 
 text_form_fields = []
 10.times do |i|
-  text_form_fields << create(:text_form_field, text_form: text_forms[i])
+  2.times do
+    text_form_fields << create(:text_form_field, text_form: text_forms[i])
+  end
 end
 
 word_forms = []
 10.times do |i|
-  word_forms << create(:word_form, form_field: form_fields[i])
+  2.times do
+    word_forms << create(:word_form, form_field: form_fields[i])
+  end
 end
 
 word_fields = []
