@@ -1,14 +1,14 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :forms]
+  before_action :set_person, only: %i[show forms]
 
   def index
     @people = Person.all
 
-    render json: @people
+    render 'people/index'
   end
 
   def show
-    render json: @person
+    render 'people/show'
   end
 
   def forms

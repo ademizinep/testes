@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_19_230440) do
     t.string "phone_number"
     t.string "address"
     t.string "picture_url"
+    t.string "date_of_birth"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

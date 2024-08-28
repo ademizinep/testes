@@ -1,5 +1,5 @@
 class FormsController < ApplicationController
-  before_action :set_form, only: [:show, :update, :destroy]
+  before_action :set_form, only: %i[show update destroy]
 
   def index
     @forms = Form.all
